@@ -1,17 +1,17 @@
 const fetch = require("node-fetch")
 const express = require("express")
 const app = express()
-app.use(express.static("public"))
+app.use(express.static("../public"))
 const { buildStats } = require("./stats")
 const { seasonFiles } = require("./config.json")
-const seasons = seasonFiles.map(file => require(`./public/seasons/${file}`))
+const seasons = seasonFiles.map(file => require(`../public/seasons/${file}`))
 
 app.get("/", (request, response) => {
-    response.sendFile(__dirname + "/views/index.html")
+    response.sendFile(__dirname + "/public/index.html")
 })
 
 app.get("/player/:player", (request, response) => {
-    response.sendFile(__dirname + "/views/player.html")
+    response.sendFile(__dirname + "/public/player.html")
 })
 
 app.get("/stats/:season", async (request, response) => {
